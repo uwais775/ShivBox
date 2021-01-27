@@ -44,7 +44,7 @@ class discordRPC:
         print('OP Code: {}; Length: {}\nResponse:\n{}\n'.format(
             code, length, json.loads(data[8:].decode('utf-8'))))
 
-    def send_rich_presence(self, activity):
+    def update(self, activity):
         current_time = time.time()
         payload = {
             "cmd": "SET_ACTIVITY",
