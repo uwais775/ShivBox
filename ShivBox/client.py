@@ -1,6 +1,7 @@
+imp
 
 class Client():
-    def update(self, activity):
+    def send_rp(self, activity):
         current_time = time.time()
         payload = {
             "cmd": "SET_ACTIVITY",
@@ -19,4 +20,4 @@ class Client():
         self.loop.close()
 
     def start(self):
-        self.loop.run_until_complete(self.handshake())
+        self.loop.run_until_complete(self.make_pc())
