@@ -11,7 +11,7 @@ class discordRPC:
             self.ipc_path = (os.environ.get('XDG_RUNTIME_DIR', None) or os.environ.get('TMPDIR', None) or
                              os.environ.get('TMP', None) or os.environ.get('TEMP', None) or '/tmp') + '/discord-ipc-0'
             self.loop = asyncio.get_event_loop()
-        elif sys.platform == 'win32' or sys.platform = 'win64':
+        elif sys.platform == 'win32':
             self.ipc_path = r'\\?\pipe\discord-ipc-0'
             self.loop = asyncio.ProactorEventLoop()
         self.sock_reader: asyncio.StreamReader = None
