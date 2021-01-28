@@ -6,9 +6,11 @@ ShivBox is an easy to use discord rich presence client
 
 
 ```py
-from ShivBox import RPC
+import ShivBox as sb
+from sb.RPC import client
+
     
-client = RPC.Client("clientID") #Your application's ID as a string#
+client = client.Client("clientID") #Your application's ID as a string#
 client.start() #Start the port connection#
 
 current_time = time.time() #The start time for elapsing#
