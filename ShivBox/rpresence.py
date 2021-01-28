@@ -4,6 +4,7 @@ import os
 import struct
 import sys
 import time
+import .exceptions
 
 class discordRPC:
     def __init__(self, client_id):
@@ -16,7 +17,7 @@ class discordRPC:
             self.loop = asyncio.ProactorEventLoop()
         self.sock_reader: asyncio.StreamReader = None
         self.sock_writer: asyncio.StreamWriter = None
-        self.client_id = client_id
+        self.client_id = client_id.
 
     async def read_output(self):
         print("reading output")
