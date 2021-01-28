@@ -5,7 +5,7 @@ import struct
 import sys
 import time
 
-class DiscordRPC:
+class RPC:
     def __init__(self, client_id):
         if sys.platform == 'linux':
             self.ipc_path = (os.environ.get('XDG_RUNTIME_DIR', None) or os.environ.get('TMPDIR', None) or
