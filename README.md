@@ -1,10 +1,40 @@
 # ShivBox
 
 ShivBox is an easy to use discord rich presence client
-### Coming soon
 
-ShivBox will be releasing in around July 2021 as a full usuable library.
+## Quick Example
 
-## Requirements
+
+```py
+    from ShivBox import rpclient
+    
+    RPC = rpc.Client("clientID") #Your application's ID as a string#
+    RPC.start() #Start the port connection#
+
+    current_time = time.time() #The start time for elapsing#
+
+    #Activity Info#
+    activity = {
+        "state": "This is the state",
+        "details": "Here are some details",
+        "timestamps": {
+            "start": int(current_time)
+        },
+        "assets": {
+            "small_text": "Text for small_image",
+            "small_image": "img_small",
+            "large_text": "Text for large_image",
+            "large_image": "img_large"
+        },
+        "party": {
+            "size": [1, 6]
+        }
+    }
+While True:
+    RPC.send_rich_presence(activity)
+
+ ```
+
+### Requirements
 - Python 3.7.x
 - Asyncio
