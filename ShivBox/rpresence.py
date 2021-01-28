@@ -4,9 +4,8 @@ import os
 import struct
 import sys
 import time
-import .exceptions
 
-class RPC:
+class DiscordRPC:
     def __init__(self, client_id):
         if sys.platform == 'linux':
             self.ipc_path = (os.environ.get('XDG_RUNTIME_DIR', None) or os.environ.get('TMPDIR', None) or
@@ -17,7 +16,7 @@ class RPC:
             self.loop = asyncio.ProactorEventLoop()
         self.sock_reader: asyncio.StreamReader = None
         self.sock_writer: asyncio.StreamWriter = None
-        self.client_id = client_id.
+        self.client_id = client_id
 
     async def read_output(self):
         print("reading output")
@@ -32,7 +31,7 @@ class RPC:
         yield from self.sock_writer.drain()
         print(data)
 
-    async def handshake(self):
+    async def make_pc(self):
         if sys.platform == 'linux':
             self.sock_reader, self.sock_writer = await asyncio.open_unix_connection(self.ipc_path, loop=self.loop)
         elif sys.platform == 'win32':
@@ -45,7 +44,7 @@ class RPC:
         print('OP Code: {}; Length: {}\nResponse:\n{}\n'.format(
             code, length, json.loads(data[8:].decode('utf-8'))))
 
-    def update(self, activity):
+    def send_rp(self, activity):
         current_time = time.time()
         payload = {
             "cmd": "SET_ACTIVITY",
@@ -64,4 +63,4 @@ class RPC:
         self.loop.close()
 
     def start(self):
-        self.loop.run_until_complete(self.handshake())
+        self.loop.run_until_complete(self.make_pc())
