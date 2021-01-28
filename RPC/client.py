@@ -31,7 +31,7 @@ class Client:
         yield from self.sock_writer.drain()
         print(data)
 
-    async def handshake(self):
+    async def make_rp(self):
         if sys.platform == 'linux':
             self.sock_reader, self.sock_writer = await asyncio.open_unix_connection(self.ipc_path, loop=self.loop)
         elif sys.platform == 'win32':
@@ -44,7 +44,7 @@ class Client:
         print('OP Code: {}; Length: {}\nResponse:\n{}\n'.format(
             code, length, json.loads(data[8:].decode('utf-8'))))
 
-    def send_rich_presence(self, activity):
+    def send_rp(self, activity):
         current_time = time.time()
         payload = {
             "cmd": "SET_ACTIVITY",
@@ -63,4 +63,4 @@ class Client:
         self.loop.close()
 
     def start(self):
-        self.loop.run_until_complete(self.handshake())
+        self.loop.run_until_complete(self.make_rp())
